@@ -18,7 +18,7 @@ function lastBlogPosts($pdo)
 }
 
 /**
- * @param object $pdo
+ * @param object $pdo connection to database
  * @param int $id id of the article do be displayed
  *
  * @returns table with title, content, dates, and author name of the article
@@ -38,12 +38,21 @@ function blogPostById($pdo, $id)
 }
 
 /**
- * @param object $pdo
+ * @param object $pdo connection to database
  * @param int $id id of the article of which we want the comments
  *
  * @returns table with comment content, date, author
  *
  */
 
+function commentsByBlogPost ($pdo, $id){
 
+    $statement = $pdo->query (
+        'SELECT *
+        FROM Comments
+        INNER JOIN Authors ON Authors_id = Authors.id
+        WHERE Articles_id =' .$id
+    );
+    return $statement->fetchAll();
+}
 
