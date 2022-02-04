@@ -10,29 +10,15 @@ $routes = [
     '' => 'homeController.php',
     'blogPost' => 'blogPostController.php'
 ];
+require './resources/views/layouts/header.tpl';
 
 if (isset($filterPage)) {
     if (!$routes[$filterPage]) {
-        $title = "Erreur 404";
-        $page = 'home';
-        $MetaDescription = "Blog";
-        require './resources/views/layouts/header.tpl';
         require './resources/views/errors/404.php';
-
-
     } else {
-        $title = $filterPage;
-        $page = 'home';
-        $MetaDescription = "Mon site web";
-        require './resources/views/layouts/header.tpl';
         require('app/controllers/' . $routes[$filterPage]);
-
     }
 } else {
-    $title = "home";
-    $page = 'home';
-    $MetaDescription = "Mon site web";
-    require './resources/views/layouts/header.tpl';
     require('./app/controllers/' . $routes[$filterPage]);
 }
 

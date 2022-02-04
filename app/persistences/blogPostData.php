@@ -9,11 +9,7 @@ function lastBlogPosts($pdo)
 {
 
     return $pdo->query(
-        'SELECT Articles.id, Articles.title, Articles.content, Articles.date_start, Articles.date_end, Articles.importance, Authors.name, Authors.pseudo, Authors.firstName
-        FROM Articles
-        INNER JOIN Authors ON Articles.Authors_id = Authors.id
-        ORDER BY Articles.id DESC
-        LIMIT 10'
+        file_get_contents('database/lastBlogPosts.sql')
     );
 }
 
@@ -27,12 +23,9 @@ function lastBlogPosts($pdo)
 
 function blogPostById($pdo, $id)
 {
-    $statement = $pdo->query(
-        'SELECT Articles.id, Articles.title, Articles.content, Articles.date_start, Articles.date_end, Articles.importance, Authors.name, Authors.pseudo, Authors.firstName
-        FROM Articles
-        INNER JOIN Authors ON Articles.Authors_id = Authors.id
-         WHERE Articles.id =' . $id
 
+    $statement = $pdo->query(
+        file_get_contents('database/blogPostById.sql') .$id
     );
     return $statement->fetch();
 }
@@ -47,12 +40,9 @@ function blogPostById($pdo, $id)
 
 function commentsByBlogPost ($pdo, $id){
 
-    $statement = $pdo->query (
-        'SELECT *
-        FROM Comments
-        INNER JOIN Authors ON Authors_id = Authors.id
-        WHERE Articles_id =' .$id
-    );
+    $statement = $pdo->prepare ( file_get_contents('database/commentsByBlogPost.sql') .$id);
+    $statement->execute();
+
     return $statement->fetchAll();
 }
 
