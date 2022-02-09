@@ -14,6 +14,7 @@ if (!filter_has_var(INPUT_POST, 'submit')) {
 //Getting the data to display from BDD
     $dataFromBDD = blogPostById($pdo, $filterPostId);
     $dataToDisplay = $dataFromBDD[0];
+    var_dump($dataToDisplay);
 
 //Formating dates
     $dateEndToDisplay = date('Y-m-d', strtotime($dataToDisplay['date_end']));

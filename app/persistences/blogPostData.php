@@ -23,7 +23,7 @@ function blogPostById($pdo, $id)
     $statement = $pdo->query(
         file_get_contents('database/blogPostById.sql') . $id
     );
-    return $statement->fetchall();
+    return $statement->fetchall(PDO::FETCH_ASSOC);
 }
 
 /**
@@ -38,7 +38,7 @@ function commentsByBlogPost($pdo, $postId)
     $statement->bindValue(':id', $postId);
     $statement->execute();
 
-    return $statement->fetchAll();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 /**
@@ -124,8 +124,6 @@ return  $statement->execute();
 //}
 
 
-
-
 /**
  * @param $pdo object connection to db
  * @return array all authors' pseudo & id ordered by pseudo asc
@@ -135,7 +133,7 @@ function getAuthorsByPseudo($pdo)
 {
     $statement = $pdo->prepare(file_get_contents('database/getAuthors.sql'));
     $statement->execute();
-    return $statement->fetchAll();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
 
 /**
@@ -146,5 +144,5 @@ function getCategoriesByName($pdo)
 {
     $statement = $pdo->prepare(file_get_contents('database/getCategories.sql'));
     $statement->execute();
-    return $statement->fetchAll();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
 }

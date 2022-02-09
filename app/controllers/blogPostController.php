@@ -2,7 +2,9 @@
 
 include 'app/persistences/blogPostData.php';
 
-$post = blogPostById($pdo, $filterPostId);
+$postFromBDD = blogPostById($pdo, $filterPostId);
+$post = $postFromBDD[0];
+
 $comments = commentsByBlogPost($pdo, $filterPostId);
 
 if ($post) {
