@@ -4,12 +4,15 @@ include 'app/persistences/blogPostData.php';
 // Get the authors to display in select
 $authors = getAuthorsByPseudo($pdo);
 
+// Get the categories to display in select
+$categories = getCategoriesByName($pdo);
+
 // Include the view
 include './resources/views/blogPostCreate.tpl.php';
 
-// Inputs filtration & validation
 if (filter_has_var(INPUT_POST, 'submit')) {
 
+// Inputs filtration & validation EXECEPT CATEGORIES
     $inputs = [
         'title' => FILTER_SANITIZE_STRING,
         'content' => FILTER_SANITIZE_STRING,
@@ -33,12 +36,28 @@ if (filter_has_var(INPUT_POST, 'submit')) {
         "end date" => $formatedDateEnd,
     ];
 
+// Inputs filtration & validation FOR CATEGORIES
+//    $categoryInputs = [
+//        'cat1' => FILTER_VALIDATE_INT,
+//        'cat2' => FILTER_VALIDATE_INT,
+//        'cat3' => FILTER_VALIDATE_INT,
+//    ];
+//    $filteredCategoryInputs = filter_input_array(INPUT_POST, $categoryInputs);
+
+
 //Creation of article
     if ($filteredInputs != false) {
-        $newArticleCreated = blogPostCreate($pdo, $filteredAllInputs);
+        //Inserting all the inputs except categories
+        $newArticle = blogPostCreate($pdo, $filteredAllInputs);
 
-        if ($newArticleCreated) {
-           header("Location: ?action=home");
+        //Getting the id of the article created
+        //$newArticleId = $pdo->lastInsertId();
+
+        //Inserting the categories
+        //$categoriesInArticle = blogPostAddCategories($pdo, $filteredCategoryInputs, $newArticleId);
+
+        if ($newArticle) {
+            header("Location: ?action=home");
         } else {
             $msg = "Un problème est survenu lors de la création de votre article. Il n'a pas pu être enregistré.";
         }

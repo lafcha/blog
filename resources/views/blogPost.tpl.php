@@ -5,6 +5,7 @@
 <h2>Commentaires</h2>
 <?php
 if (isset($comments)) {
+    var_dump($comments);
 foreach ($comments as $comment){
     foreach($comment as $input)?>
     <h4><?= $comment['Content'] ?></h4>

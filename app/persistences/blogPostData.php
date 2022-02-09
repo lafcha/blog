@@ -52,12 +52,12 @@ function commentsByBlogPost($pdo, $postId)
 function blogPostCreate($pdo, $filteredAllInputs)
 {
     $values = [
-        ":title" =>$filteredAllInputs['title'],
-        ":content" =>$filteredAllInputs['content'],
+        ":title" => $filteredAllInputs['title'],
+        ":content" => $filteredAllInputs['content'],
         ":date_start" => $filteredAllInputs['start date'],
         ":date_end" => $filteredAllInputs['end date'],
         ":importance" => $filteredAllInputs['importance'],
-        ":Authors_id" =>  $filteredAllInputs['author'],
+        ":Authors_id" => $filteredAllInputs['author'],
 
     ];
 
@@ -69,8 +69,32 @@ function blogPostCreate($pdo, $filteredAllInputs)
     } else {
         return false;
     }
-
 }
+
+//function blogPostAddCategories($pdo, $filteredCategoryInputs, $articleId)
+//{
+//    $insertedCat = 0;
+//    foreach ($filteredCategoryInputs as $category => $categoryId) {
+//        if ($categoryId) {
+//            $values = [
+//                ':idArt' => $articleId,
+//                ':idCat' => $categoryId,
+//            ];
+//            $statement = $pdo->prepare(file_get_contents('database/addCategoriesToArticle.sql'));
+//            $execute = $statement->execute($values);
+//            if ($execute) {
+//                $insertedCat++;
+//            }
+//        }
+//    }
+//
+//    if ($insertedCat > 0) {
+//        return true;
+//    } else {
+//        return false;
+//    }
+//}
+
 
 /**
  * @param $pdo object connection to db
@@ -80,6 +104,17 @@ function blogPostCreate($pdo, $filteredAllInputs)
 function getAuthorsByPseudo($pdo)
 {
     $statement = $pdo->prepare(file_get_contents('database/getAuthors.sql'));
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+/**
+ * @param $pdo
+ * @return array all categories' name & id ordered by name asc
+ */
+function getCategoriesByName($pdo)
+{
+    $statement = $pdo->prepare(file_get_contents('database/getCategories.sql'));
     $statement->execute();
     return $statement->fetchAll();
 }
