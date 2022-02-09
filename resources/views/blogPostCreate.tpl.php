@@ -1,0 +1,55 @@
+<h1>Créer un nouvel article</h1>
+<a href="/">Retourner à la page d'accueil</a>
+<p class="fs-6 text-secondary">
+    <?php
+       echo $msg;
+    ?>
+</p>
+
+<form action="http://blog.local/?action=blogPostCreate" method="post">
+    <div>
+        <label for="title">Titre de l'article</label>
+        <input type="text" name="title" id="title">
+    </div>
+
+    <div>
+        <label for="content">Contenu de l'article</label>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <label for="date_start">Date de publication</label>
+        <input type="date" name="date_start" id="date_start">
+
+    </div>
+
+    <div>
+        <label for="date_end">Date de dépublication</label>
+        <input type="date" name="date_end" id="date_end">
+    </div>
+
+    <div>
+        <label for="importance-select">Importance de l'article</label>
+        <select name="importance" id="importance-select">
+            <option value="">--Choisissez une importance--</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+    </div>
+
+    <div>
+        <label for="author-select">Auteur</label>
+        <select name="author" id="author-select">
+            <?php foreach($authors as $index => $author):?>
+            < <option value="<?php echo $author['id'] ?>"><?php echo $author['pseudo'] ?></option>
+            <?php endforeach;?>
+        </select>
+    </div>
+
+    <input type="submit" name="submit" value="Envoyer">
+
+
+</form>

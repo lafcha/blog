@@ -5,13 +5,14 @@ $filterPage = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_SPECIAL_CHARS);
 $filterPostId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 $routes = [
-
-    'home' => 'home.tpl',
     '' => 'homeController.php',
-    'blogPost' => 'blogPostController.php'
+    null => 'homeController.php',
+    'home' => 'homeController.php',
+    'blogPost' => 'blogPostController.php',
+    'blogPostCreate' => 'blogPostCreateController.php',
 ];
-require './resources/views/layouts/header.tpl';
 
+require './resources/views/layouts/header.tpl';
 if (isset($filterPage)) {
     if (!$routes[$filterPage]) {
         require './resources/views/errors/404.php';
@@ -21,5 +22,4 @@ if (isset($filterPage)) {
 } else {
     require('./app/controllers/' . $routes[$filterPage]);
 }
-
 require './resources/views/layouts/footer.tpl';
