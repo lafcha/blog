@@ -11,7 +11,7 @@ foreach ($lastPosts as $article){ ?>
             <a href="?action=blogPost&id=<?= $article['id']?>"><h5 class="card-title"><?= $article['title'] ?></h5></a>
             <h6 class="card-subtitle mb-2 text-muted"><?= $article['name'] ?></h6>
             <p class="card-text"><?= $article['content'] ?></p>
-            <a class="btn btn-primary" href="?action=blogPostModify&id$article['id']?>" role="button">Modifier</a>
+            <a class="btn btn-primary" href="?action=blogPostModify&id=<?= $article['id']?>" role="button">Modifier</a>
         </div>
     </div>
 </div>
