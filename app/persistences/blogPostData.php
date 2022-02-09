@@ -69,6 +69,29 @@ function blogPostCreate($pdo, $filteredAllInputs)
     }
 }
 
+function blogPostUpdate($pdo, $blogPostData, $articleId){
+    $values = [
+        ":title" => $blogPostData['title'],
+        ":content" => $blogPostData['content'],
+        ":date_start" => $blogPostData['start date'],
+        ":date_end" => $blogPostData['end date'],
+        ":importance" => $blogPostData['importance'],
+        ":Authors_id" => $blogPostData['author'],
+        "articleId" => $articleId,
+
+    ];
+
+    $statement = $pdo->prepare(file_get_contents('database/blogPostUpdate.sql'));
+    $execute = $statement->execute($values);
+
+    if ($execute) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
 //function blogPostAddCategories($pdo, $filteredCategoryInputs, $articleId)
 //{
 //    $insertedCat = 0;

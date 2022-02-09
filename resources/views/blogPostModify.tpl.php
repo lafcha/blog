@@ -1,7 +1,7 @@
 <h1>Modifier un article</h1>
 <a href="/">Retourner à la page d'accueil</a>
 
-<form action="http://blog.local/?action=blogPostCreate" method="post">
+<form action="http://blog.local/?action=blogPostModify&id=<?= $dataToDisplay['id'];?>" method="post">
     <div>
         <label for="title">Titre de l'article</label>
         <input type="text" name="title" id="title"
@@ -32,7 +32,7 @@
     <div>
         <label for="importance-select">Importance de l'article</label>
         <select name="importance" id="importance-select">
-            <option value="" <?= $dataToDisplay['importance'] == 0 ? "selected" : "";?>>--Choisissez une importance--</option>
+            <option value="0" <?= $dataToDisplay['importance'] == 0 ? "selected" : "";?>>--Choisissez une importance--</option>
             <option value="1" <?= $dataToDisplay['importance'] == 1 ? "selected" : "";?>>1</option>
             <option value="2" <?= $dataToDisplay['importance'] == 2 ? "selected" : "";?>>2</option>
             <option value="3" <?= $dataToDisplay['importance'] == 3 ? "selected" : "";?>>3</option>

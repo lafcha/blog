@@ -30,7 +30,7 @@
     <div>
         <label for="importance-select">Importance de l'article</label>
         <select name="importance" id="importance-select">
-            <option value="">--Choisissez une importance--</option>
+            <option value="0">--Choisissez une importance--</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
