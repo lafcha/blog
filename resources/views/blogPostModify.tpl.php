@@ -25,7 +25,7 @@
     <div>
         <label for="date_end">Date de dépublication</label>
         <input type="date" name="date_end" id="date_end"
-               value="<?= $dataToDisplay['date end'];?>"
+               value="<?= $dataToDisplay['date_end'];?>"
         >
     </div>
 
