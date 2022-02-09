@@ -96,6 +96,8 @@ function blogPostCreate($pdo, $filteredAllInputs)
 //}
 
 
+
+
 /**
  * @param $pdo object connection to db
  * @return array all authors' pseudo & id ordered by pseudo asc
