@@ -10,7 +10,7 @@ $routes = [
     'home' => 'homeController.php',
     'blogPost' => 'blogPostController.php',
     'blogPostCreate' => 'blogPostCreateController.php',
-    'blogPostModify' => 'blogModifyController.php',
+    'blogPostModify' => 'blogPostModifyController.php',
 ];
 
 require './resources/views/layouts/header.tpl';

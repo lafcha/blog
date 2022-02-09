@@ -20,12 +20,10 @@ function lastBlogPosts($pdo)
 
 function blogPostById($pdo, $id)
 {
-
     $statement = $pdo->query(
         file_get_contents('database/blogPostById.sql') . $id
     );
-
-    return $statement->fetch();
+    return $statement->fetchall();
 }
 
 /**
