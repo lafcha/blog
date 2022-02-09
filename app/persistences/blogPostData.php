@@ -92,6 +92,13 @@ function blogPostUpdate($pdo, $blogPostData, $articleId){
 
 }
 
+function blogPostDelete($pdo, $articleId){
+    $statement = $pdo->prepare(file_get_contents('database/blogPostDelete.sql'));
+    $statement->bindValue(':id', $articleId);
+return  $statement->execute();
+
+}
+
 //function blogPostAddCategories($pdo, $filteredCategoryInputs, $articleId)
 //{
 //    $insertedCat = 0;
