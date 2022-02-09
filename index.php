@@ -11,6 +11,7 @@ $routes = [
     'blogPost' => 'blogPostController.php',
     'blogPostCreate' => 'blogPostCreateController.php',
     'blogPostModify' => 'blogPostModifyController.php',
+    'blogPostDelete' => 'blogPostDeleteController.php',
 ];
 
 require './resources/views/layouts/header.tpl';
